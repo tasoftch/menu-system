@@ -105,14 +105,37 @@ class MenuFromXML extends AbstractFactory {
 			$menuItem->setIconFile($this->createLink($icon->getAttribute('type'), $icon->textContent));
 		}
 		
-		$submenu = $element->getElementsByTagName('submenu')[0];
-		if($submenu) {
-			if($submenu->getAttribute('type') == 'local') {
-				$menu = $this->readMenuFromXMLElement($submenu, $menuItem->getTitle());
-				$menuItem->setSubmenu($menu);
+		$createContextMenu = function($element) use ($menuItem) {
+			if($element) {
+				if($element->getAttribute('type') == 'local') {
+					$menu = $this->readMenuFromXMLElement($element, $menuItem->getTitle());
+					return $menu;
+				}
+				else {
+					$link = $this->createLink($element->getAttribute('type'), $element->textContent);
+					
+					$f = new static($link);
+					$f->setSelector($this->getSelector());
+					$f->setPolicy($this->getPolicy());
+					$f->setTranslator($this->getTranslator());
+					$f->setTargetGenerator($this->getTargetGenerator());
+					$menu = $f->getMenu();
+					unset($f);
+					
+					return $menu;
+				}
 			}
-		}
+		};
 		
+		$submenu = $element->getElementsByTagName('submenu')[0];
+		$submenu = $createContextMenu($submenu);
+		if($submenu)
+			$menuItem->setSubmenu($submenu);
+		
+		$sidemenu = $element->getElementsByTagName('sidemenu')[0];
+		$sidemenu = $createContextMenu($sidemenu);
+		if($sidemenu)
+			$menuItem->setSubmenu($sidemenu);
 		
 		return $menuItem;
 	}
@@ -130,6 +153,16 @@ class MenuFromXML extends AbstractFactory {
 		
 		if($type == 'abs')
 			return $content;
+		
+		if($type == 'gen') {
+			$gen = $this->getTargetGenerator();
+			if(!$gen)
+				throw new Exception("Type gen is not allowed without target generator for target `%s`", $content);
+			
+			$type = 'rel';
+			$link = $gen->generateTargetWithString($content, $type);
+			return $this->createLink($type, $link);
+		}
 	}
 	
 	public function getLocalizedTitleFromItemElement($element) {

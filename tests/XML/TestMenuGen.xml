@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<item>
+		<title>A title</title>
+		<link type="abs">https://www.tasoft.ch/</link>
+		<submenu type="gen">my-test-generator-string</submenu>
+	</item>
+</menu>

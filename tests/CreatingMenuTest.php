@@ -93,4 +93,27 @@ class CreatingMenuTest extends TestCase {
 		
 		$this->assertTrue($menu->itemAtIndex(1)->getSubmenu()->itemAtIndex(0)->hidden);
 	}
+	
+	public function testMenuCreationWithReferencedMenus() {
+		$f = new MS\Menu\Factory\MenuFromXML('tests/XML/TestMenuRefs.xml');
+		
+		$menu = $f->getMenu();
+		$this->assertTrue($menu->itemAtIndex(0)->hasSubmenu());
+		
+		$this->assertEquals(15, $menu->itemAtIndex(0)->getSubmenu()->itemAtIndex(0)->tag);
+	}
+	
+	public function testMenuCreationByGenerator() {
+		$f = new MS\Menu\Factory\MenuFromXML('tests/XML/TestMenuGen.xml');
+		$f->setTargetGenerator(new class implements FA\Target\TargetGeneratorInterface {
+			public function generateTargetWithString(string $string, &$type = 'rel'): string {
+				return "TestMenu.xml";
+			}
+		});
+		
+		$menu = $f->getMenu();
+		$this->assertTrue($menu->itemAtIndex(0)->hasSubmenu());
+		
+		$this->assertEquals(15, $menu->itemAtIndex(0)->getSubmenu()->itemAtIndex(0)->tag);
+	}
 }
