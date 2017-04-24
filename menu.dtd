@@ -4,11 +4,31 @@ and navigations in your application.
 -->
 <!DOCTYPE menu [
 	<!ELEMENT menu (item*)>
-	<!ELEMENT item (title, link, icon?)>
-	<!ELEMENT title (#CDATA)>
-	<!ELEMENT link (#CDATA)>
-	<!ELEMENT icon (#CDATA)>
+	<!ELEMENT item (title+, link, icon?, (submenu?|sidemenu?))>
+	<!ELEMENT title (#PCDATA)>
+	<!ELEMENT link (#PCDATA)>
+	<!ELEMENT icon (#PCDATA)>
 	
-	<!ELEMENT submenu (item*)>
+	<!ELEMENT submenu (#PCDATA | item)*>
 	<!ELEMENT sidemenu (item*)>
+	
+	
+	<!ATTLIST menu class CDATA "TASoft\MenuSystem\Menu">
+	
+	<!ATTLIST item tag CDATA #IMPLIED>
+	<!ATTLIST item class CDATA "TASoft\MenuSystem\MenuItem">
+	<!ATTLIST item id CDATA #IMPLIED>
+	
+	<!ATTLIST title lang CDATA #IMPLIED>
+	
+	<!ATTLIST link type (rel|abs|gen) #REQUIRED>
+	<!ATTLIST icon type (rel|abs|gen) #REQUIRED>
+	
+	<!ATTLIST submenu type (local|rel|abs|gen) #REQUIRED>
+	<!ATTLIST submenu class CDATA "TASoft\MenuSystem\Menu">
+
+	
+	<!ATTLIST sidemenu type (local|rel|abs|gen) #REQUIRED>
+	<!ATTLIST sidemenu class CDATA "TASoft\MenuSystem\Menu">
+	
 ]>
