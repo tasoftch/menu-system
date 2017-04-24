@@ -30,5 +30,4 @@ and navigations in your application.
 	
 	<!ATTLIST sidemenu type (local|rel|abs|gen) #REQUIRED>
 	<!ATTLIST sidemenu class CDATA "TASoft\MenuSystem\Menu">
-	
 ]>
