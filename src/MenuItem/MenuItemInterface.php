@@ -7,6 +7,7 @@ interface MenuItemInterface {
 	public function getTitle(): string;
 	public function getAction();
 	public function isSelected(): bool;
+	public function getID(): string;
 	
 	public function setMenu(MS\Menu\MenuInterface $menu = NULL);
 	public function getMenu(): ?MS\Menu\MenuInterface;

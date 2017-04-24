@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu>
+	<item tag="15">
+		<title>A title</title>
+		<title lang="de">Mein Titel</title>
+		<title lang="en">My Title</title>
+		<title lang="fr">Mon titlé</title>
+		<link type="abs">https://www.tasoft.ch/</link>
+		<icon type="rel">../../current/MSMenuSystem.php</icon>
+	</item>
+</menu>

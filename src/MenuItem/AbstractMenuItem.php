@@ -7,12 +7,14 @@ abstract class AbstractMenuItem implements MenuItemInterface {
 	private $title;
 	private $action;
 	private $selected = false;
+	private $id;
 	
 	private $menu;
 	private $submenu, $sidemenu;
 	
 	public $tag;
 	public $hidden = false;
+	public $enabled = true;
 	
 	public function setSubmenu(MS\Menu\MenuInterface $menu = NULL) {
 		$this->_maintainConsistencyOfSubmenu($this->submenu, $menu);
@@ -41,6 +43,16 @@ abstract class AbstractMenuItem implements MenuItemInterface {
 	}
 	public function setTitle(string $string) {
 		$this->title = $string;
+	}
+	
+	public function getID(): string {
+		if(!$this->id)
+			$this->id = uniqid();
+		return $this->id;
+	}
+	
+	public function setID(string $id) {
+		$this->id = $id;
 	}
 	
 	public function getAction() {

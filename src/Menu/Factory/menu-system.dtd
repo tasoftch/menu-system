@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE menu [
+	<!ELEMENT menu (item*)>
+	<!ELEMENT item (title+, link, icon?, (submenu?|sidemenu?))>
+	<!ELEMENT title (#PCDATA)>
+	<!ELEMENT link (#PCDATA)>
+	<!ELEMENT icon (#PCDATA)>
+	
+	<!ELEMENT submenu (#PCDATA | item)*>
+	<!ELEMENT sidemenu (item*)>
+	
+	
+	<!ATTLIST menu class CDATA "TASoft\MenuSystem\Menu">
+	
+	<!ATTLIST item tag CDATA #IMPLIED>
+	<!ATTLIST item class CDATA "TASoft\MenuSystem\MenuItem">
+	<!ATTLIST item id CDATA #IMPLIED>
+	
+	<!ATTLIST title lang CDATA #IMPLIED>
+	
+	<!ATTLIST link type (rel|abs|gen) #REQUIRED>
+	<!ATTLIST icon type (rel|abs|gen) #REQUIRED>
+	
+	<!ATTLIST submenu type (local|rel|abs|gen) #REQUIRED>
+	<!ATTLIST submenu class CDATA "TASoft\MenuSystem\Menu">
+
+	
+	<!ATTLIST sidemenu type (local|rel|abs|gen) #REQUIRED>
+	<!ATTLIST sidemenu class CDATA "TASoft\MenuSystem\Menu">
+	
+]>
+<menu></menu>

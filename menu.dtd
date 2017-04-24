@@ -1,0 +1,14 @@
+<!--
+This DTD describes tasoft/menu-system PHP library to load, manage and render menus
+and navigations in your application.
+-->
+<!DOCTYPE menu [
+	<!ELEMENT menu (item*)>
+	<!ELEMENT item (title, link, icon?)>
+	<!ELEMENT title (#CDATA)>
+	<!ELEMENT link (#CDATA)>
+	<!ELEMENT icon (#CDATA)>
+	
+	<!ELEMENT submenu (item*)>
+	<!ELEMENT sidemenu (item*)>
+]>
