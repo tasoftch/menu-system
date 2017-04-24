@@ -34,7 +34,7 @@ $menu = $f->getMenu();
 // And that's all
 ````
 To setup menus with factories there are 4 hooks to control the loading:
-1. Poilcy: Determines wether a menu item is enabled and/or visible.
-2. Selector: Determines wether a menu item is selected or not.
+1. Poilcy: Determines whether a menu item is enabled and/or visible.
+2. Selector: Determines whether a menu item is selected or not.
 3. Target Generator: Creates dynamically targets for menu-items.
 4. Translator: The title can be localized
